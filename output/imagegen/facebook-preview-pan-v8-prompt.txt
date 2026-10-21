@@ -1,3 +1,0 @@
-Built-in image_gen text edit. Original logo applied separately by scripts/build-social-preview.cjs.
-
-Use case: text-localization. Make ONE text replacement in this exact image. At the lower left replace "Welcoming distributors across Luzon" with the exact text "Welcoming distributors nationwide". Use the same dark red sans-serif font, size, baseline, left alignment and styling. Only edit that text line and the immediate cream background behind the old line. Preserve every other pixel and feature as faithfully as possible, especially all five gyoza, their size, whole shapes, golden texture, pan, headline, subtitle, lighting, and wide framing. Upper-left area must remain empty for original logo overlay. Do not redraw food or redesign anything. Same wide 1.91:1 image.

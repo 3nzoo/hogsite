@@ -1,7 +1,0 @@
-Built-in image_gen edit of the approved realistic preview: reduce the top and right gyoza to fit. Original logo applied separately with scripts/build-social-preview.cjs.
-
-Precise minimal edit of the supplied banner. The user approves EVERYTHING except the fit of the uppermost gyoza and the rightmost gyoza. Keep all other image regions, all text, layout, pan, color, real photographic texture, lighting and the other three gyoza exactly unchanged.
-
-Make ONLY the uppermost dumpling and the rightmost dumpling approximately 12–15 percent smaller around their own centers. Keep the same orientation and realistic golden-brown crust appearance. Ensure both have complete, intact, naturally rounded crescent/half-moon silhouettes with softly tapered ends and no cut-off or missing corners. The top piece currently appears cut at its lower end: restore a continuous natural wrapper perimeter and a complete whole-dumpling outline, like the uncut other pieces. Keep every edge of both dumplings fully visible with a small natural gap from neighboring dumplings and the pan wall, no overlaps. Nudge each just slightly inward only if needed to fit. They must still look like the same actual food and their subtle size reduction must not change the rest of the arrangement.
-
-Preserve all existing exact text and keep the upper-left logo area blank for original-logo overlay. The five gyoza must remain five. No changes to the other three pieces. Same wide 1.91:1 frame. No new props, no stylized or glossy texture. Only fix the two pieces' size and intact outline.

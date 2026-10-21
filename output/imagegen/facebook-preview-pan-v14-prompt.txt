@@ -1,0 +1,21 @@
+Mode: Built-in image_gen edit.
+Selected food and layout base: facebook-preview-pan-v14-background.png
+Final master: facebook-preview-pan-v14.png
+Website asset: app/opengraph-image.jpg (1200 x 630).
+The original horizontal logo is composited from public/assets/brand/house-of-gyoza-horizontal.png at x=40, y=104, width=790, rather than retaining regenerated lettering. An empty cream strip at the top of the selected image supplies the paper patch behind that logo. The native render script holds the editable layer placement; no additional SVG with embedded image copies is saved. The approved scroll animation is untouched.
+
+Final generation prompt:
+Use case: precise-object-edit.
+Primary edit target is INPUT 1: the user's bright clean reference graphic with larger text and a skillet on the right. Use input 1 as the actual photo/composition base, not merely loose inspiration. INPUT 2 (v13) supplies the original horizontal House of Gyoza logo design and the correct nationwide wording.
+Make only these two changes to INPUT 1:
+1. Replace its top-left logo with the original horizontal logo from input 2, including the exact torii, black/red wordmark and its horizontal rules. Keep the new logo centered in the same upper-left region as the target logo, approximately x60 to x790 and y110 to y240, so it has the same overall visual scale as input 1. Do not remove the logo.
+2. Replace the bottom-left text 'Welcoming distributors across Luzon' with 'Welcoming distributors nationwide', in the same red font, size and baseline.
+Keep the entire rest of input 1 unchanged: exact enlarged headline, subtitle, text-to-image ratio, cream paper, margins, skillet size and position, all five gyoza shapes/sizes/positions, upright upper crescent, natural ivory dough, honey-gold browning, clean charcoal cast iron and its beautiful bright neutral lighting. Preserve the brighter, less reddish and less muddy food photography in input 1; do not introduce the dark red-orange or repetitive angular crust texture from input 2. Do not regenerate or reinterpret the food. Whole gyoza tips visible. Original 1734x907 landscape canvas.
+Exact retained headline and subtitle:
+CRISP OUTSIDE.
+COMFORT INSIDE.
+Homemade gyoza. Six signature flavors.
+Exact revised invitation:
+Welcoming distributors nationwide
+Preserve the lettering sharply and accurately. No extra objects or text.
+

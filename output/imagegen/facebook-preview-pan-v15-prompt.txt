@@ -1,0 +1,24 @@
+Mode: Built-in image_gen edit (compositing / precise-object-edit).
+Target: facebook-preview-pan-v14.png — bright clean pan, larger layout.
+Donor: facebook-preview-pan-v13.png — slimmer five gyoza only.
+Selected output: facebook-preview-pan-v15-food.png.
+Final master: facebook-preview-pan-v15.png.
+Website asset: app/opengraph-image.jpg, 1200x630.
+Assembly: scripts/build-social-preview.cjs blends the selected edit into the v14 background through a feathered ellipse centered at (1270,440), radii (445,385), preserving the outer pan rim and left-side copy. The exact original logo is reapplied at the existing v14 placement. No website animation assets or choreography were changed.
+
+Final image-generation prompt:
+Use case: compositing / precise-object-edit.
+Input 1 is the EDIT TARGET: version 14, with the brighter clean charcoal skillet, large headline and correct logo at top left.
+Input 2 is the DONOR FOR THE FIVE DUMPLINGS ONLY: version 13. Use its five slimmer dumplings as the subjects to transplant into input 1. Do not copy input 2's dark dirty-looking pan, oil, cream background, text or layout.
+
+Primary request: replace all five thick dumplings in input 1 with the five slimmer, flatter crescent-shaped gyoza from input 2. Faithfully keep the donor food's actual silhouette, moderately thin ivory dough edge, proportions and seared surface. This is a food swap, not an instruction to invent new fat dumplings. The top piece must remain the slim upright crescent from input 2. The left, right and lower-right pieces are longer, shallower half-moon crescents; the lower-left piece is the shallow crescent tilted upward to the right as in input 2.
+Arrange them in the same five-piece positions/orientations as input 2, translated and uniformly scaled together just enough to fit inside the clean skillet of input 1. Leave clear small gaps between pieces, keep all five complete and similarly sized with every tip visible, and maintain a small center gap. No overlap and no extra dumplings.
+Match the food's illumination to the brighter neutral lighting in input 1, with ivory dough and golden caramelized crust. Preserve donor silhouettes; avoid swollen, thick, tall or wide dough borders. Do not import muddy red pan colors from input 2.
+Keep EVERYTHING ELSE from input 1 unchanged: the exact bright clean pan, cooking-oil bubbles, pan rim, cast-iron texture, handle, shadow, camera angle, cream background, larger text-to-image ratio, original logo including its horizontal rules, text positions/sizes/colors and all wording. No redesign or text edits.
+Exact existing text to retain:
+CRISP OUTSIDE.
+COMFORT INSIDE.
+Homemade gyoza. Six signature flavors.
+Welcoming distributors nationwide
+1734 x 907 landscape canvas, natural appetizing food photography.
+
