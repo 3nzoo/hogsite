@@ -1,0 +1,179 @@
+# Image asset provenance
+
+Generated with the built-in ImageGen tool, with transparent backgrounds. The active assets are `public/assets/pan.png`, `public/assets/gyoza-plump-cooked.png`, `public/assets/gyoza-plump-frozen.png`, `public/assets/gyoza-golden-side-up.png`, `public/assets/gyoza-golden-soft-fold-grip.png`, and `public/assets/plate.png`. Earlier gyoza versions are retained locally.
+
+## Matching pinwheel with crispy bases facing up — October 17, 2026
+
+The user requested the pan's same arrangement on the plate, flipped so the golden-brown side is visible. The shared `lib/gyoza-layout.ts` now supplies all five positions and angles for the pan and both plated illustrations. Only the center changes between scenes; radius 13.5 and 72-degree spacing stay identical. The approved thick white assets remain in the pan.
+
+A new true-alpha sprite, `public/assets/gyoza-golden-side-up.png`, shows the broad golden cooking sole. Built-in ImageGen used the thick cooked asset as shape reference and the approved soft-fold hand asset as the crust reference. Each gyoza rotates through 180 degrees around its horizontal axis during the middle of its transfer arc; the brown reverse face appears at the turn. The selected piece transitions into the existing approved hand-grip asset before lifting. The static story plate and reduced-motion scene also show golden bases.
+
+Visible silhouettes of the plated brown pieces were checked at their actual 23% width and shared pinwheel positions, with no overlapping pixels.
+
+### Final prompt
+
+Use case: product-mockup.
+Asset: one flipped plump pan-fried gyoza with its crispy sole facing UP, true alpha-transparent sprite for a scroll animation.
+Image 1 supplies the approved THICK gyoza shape and proportions. Image 2 supplies ONLY the approved golden-brown crust color/texture and soft white wrapper texture; no hand or chopsticks should be included.
+Photograph the gyoza from above after it has been flipped onto its folded side. Show its broad flat cooking sole facing the camera: a generous rounded crescent face evenly fried honey-amber golden brown, tiny fine crisp bubbles and caramelized texture, appetizing subtle oil sheen. Keep a narrow soft ivory-white dough rim around the sole with the rounded plump white wrapper visible behind its edges, only a little of the soft broad folded area peeking along the back edge. The golden underside must dominate the visible surface, not a narrow brown stripe across a front-facing white belly.
+Retain the plump width, short pinched left/right tips and rounded filled volume of image 1. Horizontal long axis, same square framing: whole object spans x4%-96%, y29%-84%, with center near x50%, y57%. Soft neutral studio light upper-left. Realistic edible gyoza, not a flat illustrated shape. No black burned patches or orange artificial saturation.
+Genuine alpha transparency with no outside cast shadow. ONE dumpling only, no hand, chopsticks, pan, plate, garnish, smoke, text or backdrop. No checkerboard.
+
+## Approved golden close-up with softer folds — October 17, 2026
+
+The user's latest crop selects the earlier broad-fold golden-brown dumpling, rather than the later narrow-pleated crescent. A restrained edit of `gyoza-hand-grip.png` rounds the white fold edges and softens crease transitions while keeping the golden base, hand, chopstick contact and framing. The new selected file is `public/assets/gyoza-golden-soft-fold-grip.png`, created using built-in ImageGen with true alpha transparency. Cooking and plated sprites remain the approved thick versions.
+
+### Final prompt
+
+Use case: precise-object-edit.
+Image 1 is the EDIT TARGET: a transparent photographic cutout of a hand holding two wooden chopsticks gripping a golden-brown gyoza. Image 2 is the user's approved crop of this same dumpling: preserve its overall look.
+Make one small change ONLY to the ivory-white FOLDED WRAPPER above the browned base: make those three broad folds look a LITTLE SOFTER and more tender, as freshly steamed dough. Gently round the sharp rectangular fold edges and slightly soften the dark creases between flaps, with relaxed natural transitions and very subtle moisture. Keep the folds clearly visible and dimensional; this is not an image blur and not a melted or smooth unpleated dumpling. No narrow ruffles. The wide folds and generous shape are approved.
+Preserve EXACTLY the golden honey-amber crispy base, all fine caramelized bubbles, browned coverage, overall crescent silhouette, pointed ends, size, camera angle, food center, food position, lighting, two wooden chopsticks and their contact, every edge and anatomy of the hand, skin, nails, transparency and canvas framing from image 1. No change to crust color or texture, no more filling, no resizing or repositioning. Only the white fold edges and crease transitions should soften slightly.
+Keep true alpha transparency. The checkerboard in image 2 is preview UI, not a background to reproduce. No added backdrop, pan, plate, smoke, text, shadow outside objects or additional food.
+
+Latest selection: the user approved the thicker dumpling for cooking and plating and requested retaining the previous golden-brown version. The chopstick close-up therefore uses the earlier `gyoza-crescent-hand-grip.png`; the fuller frozen and steamed assets remain in the pan and plate. The latest hand-drawn placement reference replaces the two-row pan layout with five curved pieces in a loose pinwheel around the center. Plated pieces remain aligned. No new images were generated for these selections.
+
+## Fuller gyoza and aligned rows — October 17, 2026
+
+The user requested the plump rounded volume of the pan reference and one consistent viewing angle for an organized layout. The active frozen and cooked sprites now have a deeper filled belly and shorter pinched tips. Six pieces sit in two centered rows of three, all at zero rotation in both pan and plate. Transfers and the final lift preserve that orientation. The supporting story plate also uses aligned pieces. The hand cutout retains its grip, with a fuller dumpling.
+
+All three new PNG assets were made with the built-in ImageGen tool and preserve true alpha transparency. Older variants remain available locally.
+
+### Frozen — `public/assets/gyoza-plump-frozen.png`
+
+Use case: precise-object-edit.
+Image 1 is the edit target, a single slim crescent gyoza on transparency. Image 2 is the user's desired PLUMPNESS reference: the fat rounded white gyoza in the cast iron pan.
+Make the dumpling in image 1 substantially FULLER and ROUNDER, like the filled gyoza in image 2. Increase the height/depth of its stuffed body by about 45% at the same width. A generous bulging pillow of filling, broad domed smooth shoulders and softly rounded belly. Reduce the extreme narrow canoe-like crescent and long skinny pointed ends; tips should be shorter and softly pinched. Keep a delicate handmade sealed seam with a few soft folds along the curved edge, softened by the plump filling. Do not create a thin flat ribbon or oversized upright sail of dough. The actual body is thick and full.
+Keep one dumpling only, horizontal long axis, camera 55 degrees down from above, soft light upper left, natural WHITE frozen dough with very subtle flour, no golden tint or browning. Preserve width about x4%-96%, center x50% y53% on square transparent canvas; fuller dumpling should span about y25%-80%. Realistic food photography, not a 3D model. True alpha transparency, no pan, plate, hand, utensils, smoke, foam, backdrop, cast shadow, lettering or additional objects.
+
+### Cooked — `public/assets/gyoza-plump-cooked.png`
+
+Use case: precise-object-edit. Image is the edit target, one full plump frozen white gyoza on alpha transparency. Cook it by changing ONLY the surface texture: remove the powdery raw flour and frost, make the white wrapper tender and softly steamed with a subtle moisture sheen. Keep the EXACT full rounded belly, filled volume, short pointed ends, delicate folded curved seam, silhouette, camera, dimensions, center and white color. Do NOT make it thin again. Its crisp cooking sole faces down and is hidden from this view, so no brown stripe across the visible white body. Preserve soft upper-left lighting and true transparent background. No new objects, no background, no external shadow, no text, no hands, no plate or pan.
+
+### Hand grip — `public/assets/gyoza-plump-hand-grip.png`
+
+Use case: precise-object-edit.
+Image 1 is the edit target, a transparent hand and chopsticks holding a cooked gyoza. Image 2 is a PLUMPNESS reference only: the fat round filled dumplings in the pan.
+Make ONLY the held gyoza fuller and rounder: a stuffed plump smooth domed belly about 40% deeper vertically, same width and food center, shorter pinched corners and a few soft handmade pleats along the curved seam. It should look like a generously filled pillow crescent like the pan photo, not a skinny narrow canoe. Retain tender white cooked wrapper and crisp golden underside along its base. Keep every hand and stick edge, anatomy, grip, lighting, camera angle, two straight chopsticks and canvas position unchanged. Preserve both tips' secure contact with the wrapper. The food remains centered at x29.2% y66.7%; width x5%-53%, but fuller vertically. True transparency. No extra objects, text, backdrop, plate or smoke.
+
+## Crescent and compact-cluster revision — October 17, 2026
+
+The user's first new screenshot supplies the pan arrangement: six pieces in an uneven flower cluster, with inward-facing pointed tips. The second screenshot supplies the replacement shape: a slim crescent, smooth convex belly, thin raised curved lip and several small irregular pinched pleats. It replaces the earlier thick three-panel shape in cooking, plating, the story illustration and the hand-held close-up.
+
+Built-in ImageGen created three new transparent PNG assets; earlier versions are retained. Frozen and cooked variants share their silhouette for the cooking crossfade. The hand variant preserves the original hand and wooden sticks while replacing the held food. The assembled grip still pauses before lifting.
+
+### Frozen crescent — `public/assets/gyoza-crescent-frozen.png`
+
+Use case: product-mockup.
+Create ONE photoreal uncooked white gyoza isolated on true alpha transparency, matching the dumplings in the supplied reference photo closely.
+Reference role: exact dough shape, pleating, proportions and camera appearance. Select the complete crescent near the middle of the reference as the model.
+A slim elongated half-moon with tapered pointed tips, a smooth convex filled belly, a THIN raised curving sealed edge along the upper/back arc, with five to six small irregular pinched pleats along that edge. The folded lip is delicate and a little wavy, not thick. A visible smooth white upper shoulder curves into the seam; fine little pinches travel down only near the curved rim. The dumpling is a crescent, gently concave on the seam side. Match the ordinary handmade gyoza in this photo, not a symmetrical open boat, not ravioli, not a purse, not three gigantic rectangular apron flaps. Do not put a thick zigzag wall through the middle. Do not split the wrapper into two equal halves.
+Camera looks down at the dumpling from approximately 55 degrees above the table, like the photo. See its convex white upper surface plus the delicate seam and some pleated side. Long axis horizontal, both tips point left and right. Natural soft neutral-white flour dough, matte, lightly dusted, no browning or yellow tint. Fresh frozen white wrapper.
+Square canvas, isolated whole dumpling centered x50% y52%, spans x4%-96%, y32%-72%. Soft photographic light from upper left. Genuine transparent background, no parchment, no tray, no pan, no other dumplings, no hand, no utensils, no shadow outside the object, no text, no watermark.
+
+### Cooked crescent — `public/assets/gyoza-crescent-cooked.png`
+
+Use case: precise-object-edit.
+The image is the edit target: one raw white crescent gyoza on true transparency. Make it freshly steamed and cooked while preserving the EXACT crescent silhouette, thin raised curved seam, small irregular pinched pleats, slim belly, pointed tips, camera direction, dimensions and canvas position. Remove flour/frost and replace matte raw dough texture with tender ivory-white steamed dough with a very restrained moisture sheen. Keep white, not yellow or tan. Its pan-fried sole is on the underside and mostly hidden from this camera, so do not add a brown stripe to the visible belly or folds. All visible wrapper stays ivory-white. Same transparent background, lighting, crop and shape. No new objects, no smoke, no shadow outside the object, no pan, no plate, no hand, no text.
+
+### Held crescent — `public/assets/gyoza-crescent-hand-grip.png`
+
+Use case: precise-object-edit.
+Image 1 is the EDIT TARGET: a transparent photograph of hand, wooden chopsticks and one cooked gyoza.
+Image 2 is ONLY the requested new dumpling SHAPE reference.
+Replace ONLY the dumpling in image 1 to match the SLIM HALF-MOON CRESCENT dumplings in image 2. Thin raised curved sealed edge with five to six small irregular pinched pleats, pointed extended ends, smooth convex filled belly, delicate wavy lip. Remove the old three giant apron-like panels, thick straight top rim and open-boat appearance. Make it look like a normal handmade Japanese gyoza, exactly the slimmer curved proportions of image 2. Cooked white wrapper with a subtle sheen, golden honey-amber crisp flat underside peeking along the lower edge, no burned patches. Smooth body is ivory-white; pleats remain ivory.
+Preserve image1's hand anatomy, skin, nails, finger grip, exactly two wooden chopsticks, position of every hand/stick edge, camera direction, lighting and true transparency. Preserve the original dumpling's center at x29.2% y66.7%, overall width x5%-53% and tipped diagonal long axis; make its belly slimmer vertically. Preserve contact at both chopstick tips, with the new dumpling visibly held securely between them. Both pointed tips and all food remain fully inside frame. No new objects, no plate, no smoke, no backdrop, no text.
+
+## Hand pickup and front-fold reference revision
+
+The latest reference, `IMG_7954.JPG`, supplies the actual product's three broad overlapping front folds and thick sealed ridge. The `shrmp.png` advert supplies only the natural hand/chopstick grip composition; its shrimp, lettering, and prices are not used. The frozen and steamed variants retain the overhead camera needed by the pan. The pickup cutout shows the front folds and golden base, with the hand, two sticks, and food already in contact in one photograph.
+
+The grip image registers its dumpling center at 29.2% / 66.7% to the selected sprite's center. Its 11-degree correction aligns the long axis before the shared scene rotation. The completed grip appears at scroll 0.74–0.79, holds through 0.84, and lifts as one piece through 0.98. The maximum 2.05× scale leaves the gripping fingers visible. Smoke ribbons and large oil ripples were removed; small bright bubbles remain.
+
+Generated with the built-in ImageGen tool, saved as new local PNG assets with their generated alpha channels preserved. Earlier assets are retained.
+
+### Frozen overhead — `public/assets/gyoza-three-fold-frozen.png`
+
+Use case: product-mockup. Create a true overhead, top-down transparent photographic sprite of ONE frozen white House of Gyoza dumpling.
+Image 1 is the user's actual product: use the short plump body, fairly straight thick sealed ridge, three broad overlapping folds, and pinched extended pointed ends. Image 2 supplies the required strictly overhead CAMERA DIRECTION and canvas framing, not the folds.
+The dumpling stands on its flat sole. Camera looks vertically down, 90 degrees to the cooking surface. Show BOTH rounded shoulders with the thick folded seam running horizontally through the MIDDLE of its footprint. From above the three broad flat overlaps look like a few short diagonal turns along that central ridge, NOT tall front-facing triangular panels and NOT a long frilly wavy accordion. The broad flaps in the user's FRONT photo must be foreshortened because the camera is above. Do not simply isolate a front-facing dumpling from Image 1. We must not see a broad sidewall or underside from this camera. Realistic compact crescent footprint with gently pointed tips, softly curved back and belly.
+Bright natural white frozen dough, a very light flour/frost texture, neutral lighting from upper left, soft dimensional gray fold shadows, no yellow tint, no browning.
+One whole dumpling, horizontal axis, centered on a square true-alpha transparent canvas, tips x4% and96%, body spanning roughly y31% to72%, central ridge through y50%. No hands, chopsticks, pan, plate, tray, props, smoke, text, checkerboard, or background shadow. Photoreal food photography.
+
+### Steamed overhead — `public/assets/gyoza-three-fold-cooked.png`
+
+Use case: precise-object-edit. This image is the edit target: a single white frozen gyoza in a strictly overhead view on alpha transparency. Change ONLY the surface from matte frozen flour-dusted dough to freshly steamed ivory-white wrapper with a restrained moist oil sheen. Keep the EXACT silhouette, size, position, camera angle, central thick ridge and THREE broad folds, pointed ends and rounded shoulders. The sole is underneath and cannot be seen by this overhead camera, so there must be NO brown visible top or front stripe. Remove the powdery frost, soften the dough very slightly, retain clear folds, keep white rather than yellow or tan. Same lighting and true transparent background. No new objects, no hand, no chopsticks, no shadow, no background or text.
+
+### Hand, chopsticks and gyoza — `public/assets/gyoza-hand-grip.png`
+
+Use case: product-mockup. Asset: a realistic transparent food-photography cutout for an animated website, one hand holding wooden chopsticks with ONE freshly pan-fried gyoza already firmly gripped between their tips.
+Image 1 is ONLY the hand/chopstick composition reference from the user's advert. Do NOT include the advert, text, logo, shrimp, plate, sauce, or prices.
+Image 2 is the user's ACTUAL GYOZA shape reference. Match a compact plump crescent dumpling, short upright body, THREE broad smooth overlapping vertical flaps on the front, thick almost straight sealed top ridge, pointed pinched ends extending left and right. NO lots of narrow accordion pleats, NO frilly central wavy ridge, NO bao. The front-facing broad flaps are very important.
+Image 3 is ONLY a golden bottom texture reference. Cook the user's dumpling: tender ivory-white steamed folds, a crisp honey-amber finely blistered flat sole visible along the lower edge as the dumpling is tipped slightly up. The FRONT with its 3 broad folds remains visible; don't turn the entire underside straight toward the camera, don't brown all the white folds. Very subtle appetizing oil sheen.
+Composition: square RGBA transparent canvas. One horizontal gyoza centered around x28%, y62%, spanning x6% to50%, y48% to73%. Natural light-medium warm skin-tone RIGHT HAND enters from the right edge near y24%-48%, with wrist cropped naturally at right edge; all gripping fingers and some palm clearly visible at x70%-91%. No face, body, sleeve, jewelry or manicure. Correct anatomical adult hand with natural knuckles and short clean nails. Thumb, index, middle, ring fingers hold TWO tapered medium brown bamboo chopsticks in a believable everyday eating grip. The sticks run diagonally from upper-right hand toward lower-left gyoza; tapered tips pinch the same right-hand shoulder of the dumpling, one slightly behind it and one in front, around x42%, y57%-65%. Visible contact and slight wrapper compression; exactly TWO straight sticks, no floating tips, extra fingers, fused fingers, or pierced dough. Leave natural air between the sticks along their length. Sticks and hand are proportionate to a 7cm dumpling, not giant fingers or miniature chopsticks.
+Keep everything sharp and photoreal, like the user's food advert, studio light from upper-left. Include entire gyoza and gripping fingers, wrist may meet right boundary. Lots of transparent space above/below, absolutely NO backdrop, no table, no cast shadow outside objects, no smoke, no plate, no text. Genuine alpha transparency, not white or black background.
+
+## Camera-angle correction
+
+The earlier sprites showed a side elevation against an overhead pan. These replacement sprites show both shoulders and the folded central ridge from above. All cooking and plated pieces use the overhead view; only the selected dumpling transitions to the tilted underside view after the completed grip and the start of the shared lift. The top remains white while the sole cooks underneath. Reduced motion keeps the overhead plated view.
+
+### Frozen overhead — `public/assets/gyoza-overhead-frozen.png`
+
++Use case: product-mockup.
+Asset: one RAW WHITE GYOZA, standing on its cooking sole, photographed from a TRUE BIRD'S-EYE ORTHOGRAPHIC TOP VIEW, transparent PNG.
+Input pan image is ONLY a camera-direction reference. Output one dumpling, NOT a pan.
+Camera is pointed vertically downward at 90 degrees to the table, directly above the center of the dumpling. Camera sees the TOP of the folded spine plus BOTH rounded white shoulders on either side of the spine. The seam runs through the MIDDLE of its crescent footprint, from the left pointed corner through the center ridge to the right pointed corner, rather than along the far upper silhouette. Four broad overlapping folds form short folded ridges along this spine. Shape is plump, handmade, compact, curved crescent with pinched tips. White frozen flour dough.
+This is a top view, like an overhead cooking tutorial, not a side view. Do not show a front wall, a large vertical flat belly, underside, three frontal triangular apron panels, or a horizon. From this camera direction the raised seam is seen as thick irregular folded zigzag ridges, with dough shoulders visible ABOVE and BELOW that central seam. The front and back sides are equally visible from overhead. No tall peaks. NOT a three-quarter view, NOT an eye-level view. Do not tilt the camera.
+Square true alpha transparent canvas, object centered horizontally, left-right long axis, about 88% canvas width and 36% canvas height around y50%. Soft overhead studio light with gentle upper-left highlight, realistic matte raw dough, four broad folds not dozens of thin accordion ruffles. Only one gyoza. No cast shadow on background, no pan, plate, chopsticks, text, logo or extra objects.
+
+### Cooked overhead — `public/assets/gyoza-overhead-cooked.png`
+
++Use case: precise-object-edit. Image 1 is the edit target, one frozen gyoza photographed straight down from above.
+Cook this dumpling, changing ONLY texture from frozen floury matte white to tender steamed ivory-white wrapper with a subtle appetizing oil sheen. Preserve the EXACT true overhead camera angle, crescent footprint, four broad folded ridges along the central seam, full silhouette, scale and placement on square alpha-transparent canvas. The flat golden cooking sole is on the underside, hidden from this overhead camera. Do NOT paint brown patches, a brown stripe, or a golden front wall on the visible top. Both shoulders remain ivory-white, crisp folds slightly softer after steaming. No frosting, no flour dust. No new objects, pan, plate, shadows, text, utensils or backdrop. True transparency.
+
+### Lifted underside — `public/assets/gyoza-lifted-underside.png`
+
++Use case: precise-object-edit.
+Asset: the lifted and TILTED view of the same gyoza for the final bite close-up.
+Image 1 supplies the dumpling's actual plump shape and four broad folds. Image 2 is ONLY a browned-crust color/texture reference; do not copy its side elevation.
+The camera stays above the scene. Tilt the dumpling itself toward the viewer to reveal its FLAT GOLDEN-BROWN COOKING SOLE, facing the camera. This should be an underside view of a lifted crescent, not the old front-facing belly with triangular fold panels. Show one wide, mostly flat crisp golden-brown crescent face, evenly caramelized honey-amber, fine tiny oil bubbles, no burnt spots. The steamed ivory-white folds sit BEHIND the upper curved edge of that golden sole, with the four broad folds only partly visible as a thin white folded rim above it. A thin ivory edge surrounds the golden cooking sole.
+Single photoreal dumpling, horizontal long axis, centered at x50% y50% on square true-alpha transparent canvas. Match image1 width, tips at x6% and94%. Entire footprint spans roughly y30% to72%. Same overhead neutral upper-left light. No plate, pan, chopsticks, sauce, garnish, text, logos, background or outside cast shadow.
+
+## Actual-product fold and crust revision
+
+The user's folded-product photo supplied the broad handmade folds and plump shape. Their cooked-product photo supplied the continuous golden, finely bubbled base. The cooked asset was edited from the new frozen asset to keep both sprites aligned during the cooking crossfade. Both were created with the built-in ImageGen tool and saved to the local project. The animation establishes a fixed chopstick grip, pauses, then lifts and zooms the dumpling and both sticks through one shared transform.
+
+### Frozen asset — `public/assets/gyoza-folded-frozen.png`
+
++Use case: product-mockup.
+Asset type: photoreal transparent sprite for a scrolling House of Gyoza homepage.
+Input image: reference photo of the user's actual folded white gyoza. Use its exact characteristic chunky upright shape and large folds as product reference, not its tray or scene.
+Create ONE uncooked frozen gyoza, isolated on a genuinely transparent background. A short, plump crescent dumpling with four to five broad overlapping folded flaps along the upper ridge, each flap wide and thick, smooth bulging lower body, tapered pinched pointed corners. Match the handmade product in the reference. Bright ivory-white frozen wrapper, very subtle flour/frost, no yellow or tan dough, no browning.
+Camera: three-quarter view slightly above the front so the broad side and large folded ridge are clearly visible. Horizontal long axis, ends pointing left/right, center in a square canvas. Entire dumpling occupies about 88% canvas width and 53% canvas height, from y25% to y78%. Soft neutral studio light from upper left. Realistic edible soft dough texture, no outline.
+Constraints: only one gyoza, no plate, no tray, no pan, no steam, no text, no logo, no background, no cast shadow outside the object. No narrow accordion pleats, no thin long crescent, no bao bun.
+
+### Cooked asset — `public/assets/gyoza-folded-cooked.png`
+
++Use case: precise-object-edit.
+Asset type: cooked transparent gyoza sprite matching a frozen sprite for a website animation.
+Input image 1 is the EDIT TARGET: single white frozen folded gyoza on transparent background. Input image 2 is a BROWNING COLOR AND TEXTURE REFERENCE only.
+Cook the dumpling in image 1, keeping its exact silhouette, position, scale, broad overlapping folds, camera angle, lighting and transparent background. Match the user's pan-fried crispy base in image 2: a continuous even honey-amber golden-brown crust with very fine tiny bubbles and light oil sheen, not irregular burnt dark spots. Show this rich crisp crust across the lower front/bottom face of the dumpling, about the bottom 35–40% of the body, following the rounded base. Keep the large overlapping upper folds and ridge ivory-white, gently steamed moist dough. Keep a slender natural white edge along the bottommost rim. The crust should look like the crispy flat sole of a real pan-fried gyoza, not a painted stripe.
+Invariants: same single dumpling, same outline and broad folds, same 1280 square framing, no rotation or resize. Remove frost and flour dust as it is now cooked. No plate, pan, utensils, sauce, garnish, background, cast shadow, text, logo or watermark. Genuine alpha transparency.
+
+## Frozen gyoza revision
+
+Created with the built-in ImageGen tool from the cooked gyoza asset and the user's frozen-pan reference. Saved locally as `public/assets/gyoza-frozen.png`. The cooking sequence uses a crossfade from frozen white dough to the existing golden asset, with no saturation or brightness filter.
+
+Use case: precise-object-edit. Asset type: transparent raw frozen gyoza sprite for a scroll animated food website. Image 1 is the EDIT TARGET, the single golden cooked dumpling. Image 2 is a color and raw dough TEXTURE REFERENCE ONLY, a pan of frozen white gyoza. Change the single dumpling in Image 1 from cooked to RAW FROZEN WHITE GYOZA. Completely remove ALL caramelization, toasted spots, browned surface, golden-orange tint, gloss and oil. Replace the entire wrapper surface with clean natural off-white/ivory frozen raw flour dough like Image 2, matte soft white, very subtle flour dust and tiny frost particles, natural gentle soft gray dimensional shadows in folds. Preserve Image 1's precise crescent silhouette, scale, placement, pinched pleats, horizontal orientation, camera angle, lighting direction, and TRANSPARENT background. Do not change the shape, do not move or resize it, do not introduce a pan or additional dumplings. Whole dumpling should look appetizing white and uncooked, frozen dough straight from the freezer; NO beige-brown crust and NO colored scorch patches. Single white gyoza alone on true transparency. No text, no props, no drop shadow on background.
+
+## Pan
+
+Use case: product-mockup. Asset type: transparent cutout for a premium food website scroll animation. Make a photorealistic EMPTY round seasoned black cast iron frying pan viewed DIRECTLY FROM ABOVE, perfectly overhead flat lay. Handle goes diagonally toward the upper right (at two o'clock). Show the entire pan including handle fully in frame with 6% clear margin. The ROUND main pan bowl should be centered around x44% y55% of square image, have diameter 70% of image. Inside cooking surface has sparse tiny glistening olive oil droplets and dark fine cast iron grain; no food at all. Realistic soft studio lighting from top left, highlights on rim, fine honest iron patina. Object on truly TRANSPARENT background, no background table or stovetop, no printed checkerboard, no steam, no shadows outside the object, no words. High end food photography, crisp texture. Output square image.
+
+## Gyoza
+
+Use case: product-mockup. Asset type: transparent food cutout for a premium House of Gyoza website animation. One single delicious pan fried Japanese gyoza dumpling, crescent shape, viewed almost directly FROM ABOVE but with slightly visible pleated edge along TOP side. Long axis horizontal. Golden brown crisp toasted lower/front face, delicate light golden creamy wrapper and detailed organically pinched pleats along top curved edge. Handmade natural soft volume; caramelized mottling on belly and very subtle oil sheen. Soft large source studio lighting from upper left. Dumpling centered and fills 88% of width and 60% of height of square canvas, clear margin on all sides. Truly TRANSPARENT background, no plate, no pan, no chopsticks, no garnish, no props, no text, no border, no checkerboard, no ground shadow. Photorealistic high end food photography. Single distinct dumpling only, appetizing and real.
+
+## Plate
+
+Use case: product-mockup. Asset type: transparent plate cutout for a premium food website animation. One EMPTY round handmade off-white ceramic dinner plate viewed DIRECTLY FROM ABOVE, perfectly overhead flat lay. Entire plate centered in square frame, diameter 85% of image, 7% margin on every side. Warm ivory pottery with very fine speckle and concentric subtle raised rim, gentle uneven artisanal circular shape, realistic ceramic texture. No food, no utensils, no sauce bowls, no text or decoration. Soft studio light from upper left, soft shadows on inner rim. Truly TRANSPARENT background around plate, no table, no backdrop, no checkerboard, no external ground shadow. Photorealistic editorial food photography.
