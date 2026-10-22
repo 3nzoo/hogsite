@@ -34,6 +34,15 @@ Under **Build variables and secrets**, add these as build variables:
 | `NODE_VERSION` | `22.23.2` |
 | `SITE_URL` | `https://www.houseofgyoza.com` |
 
+To add the optional Facebook `fb:app_id` tag, also set `FACEBOOK_APP_ID` to
+your numeric Meta developer App ID. This is a public identifier, not the App
+Secret, Facebook Page ID, or Pixel ID. Add it under **Build variables and
+secrets**, then rebuild and deploy: this static website reads the value during
+the build, not at runtime. If the variable is empty or unset, the tag is omitted.
+For local development, copy `.env.example` to the ignored `.env.local` file
+and enter the value there. After publishing, use Facebook Sharing Debugger's
+**Scrape Again** action to refresh the metadata.
+
 Keep the existing Cloudflare-generated deployment API token selected.
 The Worker name in the dashboard must match `house-of-gyoza` in the config.
 Saving settings affects the next build; retry the failed build to use them.
