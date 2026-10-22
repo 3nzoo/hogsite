@@ -1,0 +1,35 @@
+# Dependencies and generated caches
+node_modules/
+.next/
+.sites-runtime/
+.npm/
+.cache/
+*.tsbuildinfo
+/next-env.d.ts
+
+# Build exports, local previews, image drafts, and temporary working files
+/out/
+/artifacts/
+/output/
+/tmp/
+/coverage/
+
+# Local environment and machine/editor files
+.env*
+!.env.example
+.DS_Store
+*.log
+*.swp
+*.swo
+*~
+
+# Unused earlier artwork; keep local copies without including them in Git.
+# Keep current WebPs and the PNG sources used by optimize:assets tracked.
+/public/assets/gyoza-crescent-hand-grip.png
+/public/assets/gyoza-hand-grip.png
+/public/assets/gyoza-lifted-underside.png
+/public/assets/gyoza-overhead-cooked.png
+/public/assets/gyoza-overhead-frozen.png
+/public/assets/gyoza-plump-hand-grip.png
+/public/assets/menu/crispy-pork.webp
+/public/assets/menu/crispy-pork-600.webp
