@@ -4,6 +4,8 @@ node_modules/
 .sites-runtime/
 .npm/
 .cache/
+.wrangler/
+.dev.vars*
 *.tsbuildinfo
 /next-env.d.ts
 
