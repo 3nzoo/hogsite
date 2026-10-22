@@ -1,4 +1,4 @@
-export const distributorUrl = "https://www.distributor.houseofgyoza.com/";
+export const distributorUrl = "https://distributor.houseofgyoza.com/";
 
 export const contact = {
   phone: "0977-258-5858",
