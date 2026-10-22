@@ -83,9 +83,9 @@
 .socialLinks{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px}
 .socialLinks a{min-height:44px;display:inline-flex;align-items:center;gap:16px;font-size:15px;font-weight:600;border-bottom:1px solid var(--line)}
 .socialLinks a:hover{color:var(--red);border-color:var(--red)}
-.qrLinks{display:flex;flex-wrap:wrap;gap:24px 16px;margin-top:28px;padding-top:25px;border-top:1px solid var(--line)}
-.qrLinks a{display:grid;justify-items:center;flex:0 0 128px;gap:10px;font-size:14px;font-weight:600;text-align:center}
-.qrLinks img{width:128px;height:128px;object-fit:contain;background:white;border:4px solid white}
+.qrLinks{display:grid;grid-template-columns:repeat(auto-fit,128px);justify-content:center;width:100%;max-width:272px;gap:24px 16px;margin:28px auto 0;padding-top:25px;border-top:1px solid var(--line)}
+.qrLinks a{display:grid;justify-items:center;width:128px;gap:10px;font-size:14px;font-weight:600;text-align:center}
+.qrLinks img{width:128px;height:128px;object-fit:contain;background:#f1d6a6;border:4px solid #f1d6a6}
 .footer{border-top:1px solid var(--line);padding:34px 6.5%;display:flex;align-items:center;justify-content:space-between;gap:30px}
 .footer .brandArt{width:245px;gap:10px}
 .footer .brandSymbol{width:50px}
@@ -107,7 +107,7 @@
  .story{align-items:start}.storyPhoto{aspect-ratio:.82}.storyPhoto img{object-position:49% center}
  .distributors{grid-template-columns:1fr;gap:40px}.distributorCopy{max-width:640px}.distributorCopy h2{font-size:48px}.distributorCopy>p{max-width:600px}.distributorSteps{max-width:640px;width:100%}
  .distributorSteps ol{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.distributorSteps li{display:block}.distributorSteps li>span{display:block;margin-bottom:10px}.distributorSteps h4{font-size:16px}
- .contactSection{grid-template-columns:1fr;gap:40px}.contactCopy>p{max-width:580px}.socialPanel{max-width:640px;width:100%}
+ .contactSection{grid-template-columns:1fr;gap:40px}.contactCopy>p{max-width:580px}.socialPanel{justify-self:center;max-width:640px;width:100%}
  .footer{flex-wrap:wrap}
 }
 @media(max-width:760px){
@@ -129,5 +129,5 @@
 }
 @media(max-width:380px){
  .header{padding-inline:4%;gap:6px}.brandArt{width:110px;gap:4px}.brandSymbol{width:23px}.headerCta{padding-inline:8px;font-size:14px;gap:4px}.menuToggle{min-width:40px;width:40px;padding:8px;margin-right:0}
- .content h2{font-size:35px}.distributorCopy h2{font-size:36px}.qrLinks{justify-content:center}.socialPanel{padding:22px}
+ .content h2{font-size:35px}.distributorCopy h2{font-size:36px}.socialPanel{padding:22px}
 }

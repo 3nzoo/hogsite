@@ -6,8 +6,9 @@ export function pinwheelPosition(index: number, centerX = 44.5, centerY = 55.4):
   const step = 360 / GYOZA_COUNT;
   const angle = (-126 + index * step) * Math.PI / 180;
   return {
-    x: centerX + Math.cos(angle) * 13.5,
-    y: centerY + Math.sin(angle) * 13.5,
+    // These coordinates also appear in the server-rendered percentage styles.
+    x: Number((centerX + Math.cos(angle) * 13.5).toFixed(4)),
+    y: Number((centerY + Math.sin(angle) * 13.5).toFixed(4)),
     rotation: ((90 + index * step + 180) % 360) - 180,
   };
 }

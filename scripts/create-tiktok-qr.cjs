@@ -4,6 +4,7 @@ const QRCode = require('../tmp/qr-tools/node_modules/qrcode');
 const fs = require('node:fs');
 const sharp = require('sharp');
 const url = 'https://www.tiktok.com/@houseofgyoza';
+const qrBackground = '#f1d6a6'; // Match the owner's Instagram QR background.
 const qr = QRCode.create(url, { errorCorrectionLevel: 'H' });
 const border = 4;
 const size = qr.modules.size;
@@ -19,9 +20,9 @@ const badge = 9;
 const logoScale = 6 / 24;
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" width="540" height="540" role="img" aria-label="House of Gyoza TikTok QR code">
 <title>House of Gyoza on TikTok</title>
-<rect width="${total}" height="${total}" fill="#fff"/>
+<rect width="${total}" height="${total}" fill="${qrBackground}"/>
 <path d="${modules.join('')}" fill="#171717" shape-rendering="crispEdges"/>
-<rect x="${center-badge/2}" y="${center-badge/2}" width="${badge}" height="${badge}" rx="1.4" fill="#fff"/>
+<rect x="${center-badge/2}" y="${center-badge/2}" width="${badge}" height="${badge}" rx="1.4" fill="${qrBackground}"/>
 <rect x="${center-3.8}" y="${center-3.8}" width="7.6" height="7.6" rx="1.25" fill="#171717"/>
 <g transform="translate(${center-3} ${center-3}) scale(${logoScale})">
 <path d="${iconPath}" fill="#25f4ee" transform="translate(-.8 -.4)"/>

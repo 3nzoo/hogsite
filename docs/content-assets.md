@@ -51,6 +51,37 @@ The owner supplied `https://www.tiktok.com/@houseofgyoza`. `scripts/create-tikto
 - macOS Vision decoded the logo-bearing QR successfully at 1080, 256, 144, and 128 pixels; every result exactly matched the supplied profile URL.
 - The social cards wrap at narrow widths rather than reducing the QR codes to tiny sizes.
 
+## YouTube QR update — October 22, 2026
+
+The owner supplied `https://www.youtube.com/@houseofgyoza`. It is now the fourth
+entry in `socialPages`, providing both a direct YouTube link and a QR card.
+`scripts/create-youtube-qr.cjs` encodes that exact URL with error-correction level
+H, a four-module quiet zone, and a small red play badge. The badge leaves all
+reserved finder, timing, and alignment modules intact.
+
+- Scalable website QR: `public/assets/brand/youtube-qr.svg` (lazy-loaded).
+- Print/download PNG: `public/assets/brand/youtube-qr.png`, 1080 × 1080.
+- macOS Vision decoded the logo-bearing QR at 1080, 256, 144, 128, and 120 pixels;
+  every payload matched the supplied YouTube URL. The 120-pixel check covers the
+  current on-screen image after its CSS border.
+- The four codes use a two-column grid where 272 pixels are available and stack
+  on narrower screens, keeping each code at its existing 128-pixel display size.
+
+## Matching QR backgrounds — October 22, 2026
+
+All four social QR backgrounds now match the original Instagram cream,
+`#f1d6a6` (RGB 241, 214, 166), including the four-pixel website borders.
+Instagram's artwork is unchanged. Facebook's white background was recolored
+while preserving the white `f`, blue badge, and black QR modules. TikTok and
+YouTube retain their exact module and logo paths; only their background and
+center-padding rectangles changed. Their PNG copies and generator scripts use
+the same cream.
+
+macOS Vision decoded all four website assets after rendering them at 120, 128,
+and 240 pixels. Every result matched its configured social profile URL. The
+120-pixel check covers the visible code within its 128-pixel box and two
+four-pixel borders. QR quiet zones and logo colors remain intact.
+
 ## Mobile animation framing
 
 Phone landscape testing found a real clipping issue: the 580-pixel sticky scene was taller than a 390-pixel viewport, hiding the lower pan and chapter controls. Short landscape layouts now use the actual small-viewport height and a compact two-column composition. Short portrait screens use the available space for a larger scene without a fixed minimum height. The approved assets, pinwheel positions, flip, hand grip, hold, and lift timing remain unchanged.

@@ -20,5 +20,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#faf6ee" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body>{children}</body></html>;
+  // Chrome on iOS injects __gCrRemoteFrameToken on <html> before hydration.
+  // Allow browser-owned root attributes; descendants keep hydration checks.
+  return <html lang="en" suppressHydrationWarning><body>{children}</body></html>;
 }

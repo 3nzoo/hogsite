@@ -12,6 +12,7 @@ export const socialPages = [
   { name: "Facebook", url: "https://www.facebook.com/houseofgyoza", qr: "/assets/brand/facebook-qr.png" },
   { name: "Instagram", url: "https://www.instagram.com/houseofgyoza", qr: "/assets/brand/instagram-qr.png" },
   { name: "TikTok", url: "https://www.tiktok.com/@houseofgyoza", qr: "/assets/brand/tiktok-qr.svg" },
+  { name: "YouTube", url: "https://www.youtube.com/@houseofgyoza", qr: "/assets/brand/youtube-qr.svg" },
 ];
 
 export const flavors = [

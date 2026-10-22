@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { GYOZA_COUNT, pinwheelPosition, type Point } from "@/lib/gyoza-layout";
+import { decodeExperienceImages, experienceAssets } from "@/lib/experience-assets";
 import {
   motion,
   useMotionValueEvent,
@@ -68,8 +69,11 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
   // Hand, sticks and food share one photograph and one transform: contact cannot drift.
   const gripOpacity = useTransform(progress, (p) => selected && !reduced ? smooth((p - 0.74) / 0.05) : 0);
   const flip = useTransform(progress, (p) => reduced ? 1 : smooth((transferProgress(p, index) - 0.25) / 0.5));
-  const flipRotation = useTransform(flip, (value) => value * 180);
-  const frontFace = useTransform(flip, (value) => value < 0.5 ? 1 : 0);
+  // These are flat photographs: a full rotateX turn collapses them to a line.
+  // Keep their volume as the wrapper turns into the golden-side-up photograph.
+  const flipScaleY = useTransform(flip, (value) => 1 - Math.sin(value * Math.PI) * 0.28);
+  const flipTilt = useTransform(flip, (value) => -Math.sin(value * Math.PI) * 8);
+  const frontFace = useTransform(flip, (value) => 1 - smooth((value - 0.42) / 0.16));
   const backFace = useTransform(frontFace, (value) => 1 - value);
   const cookedFrontOpacity = useTransform(() => cookedOpacity.get() * frontFace.get());
   const goldenOpacity = useTransform(() => backFace.get() * (1 - gripOpacity.get()));
@@ -104,42 +108,43 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
           filter,
         }}
       >
-        <motion.div style={{ position: "absolute", inset: 0, rotateX: flipRotation, transformOrigin: "50% 57%", transformStyle: "preserve-3d" }}>
+        <motion.div style={{ position: "absolute", inset: 0, scaleY: flipScaleY, rotate: flipTilt, transformOrigin: "50% 57%" }}>
         <motion.img
           className="experience-gyoza-image experience-gyoza-frozen"
-          src="/assets/gyoza-plump-frozen.png"
+          {...experienceAssets.frozen}
           alt=""
-          width={1254}
-          height={1254}
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
           draggable={false}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", opacity: frozenOpacity }}
         />
         <motion.img
           className="experience-gyoza-image experience-gyoza-cooked"
-          src="/assets/gyoza-plump-cooked.png"
+          {...experienceAssets.cooked}
           alt=""
-          width={1254}
-          height={1254}
+          loading="eager"
+          decoding="async"
           draggable={false}
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", opacity: cookedFrontOpacity }}
         />
         <motion.img
           className="experience-gyoza-image experience-gyoza-golden"
-          src="/assets/gyoza-golden-side-up.png"
+          {...experienceAssets.golden}
           alt=""
-          width={1254}
-          height={1254}
+          loading="eager"
+          decoding="async"
           draggable={false}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", opacity: goldenOpacity, rotateX: 180, transformOrigin: "50% 57%" }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", opacity: goldenOpacity }}
         />
         </motion.div>
         {selected && (
           <motion.img
             className="experience-hand-grip"
-            src="/assets/gyoza-golden-soft-fold-grip.png"
+            {...experienceAssets.grip}
             alt=""
-            width={1254}
-            height={1254}
+            loading="eager"
+            decoding="async"
             draggable={false}
             style={{ opacity: gripOpacity }}
           />
@@ -151,9 +156,36 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
 
 export default function ScrollExperience() {
   const section = useRef<HTMLElement>(null);
+  const scene = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion() ?? false;
   const [stage, setStage] = useState(0);
+  const [assetState, setAssetState] = useState<"loading" | "ready" | "error">("loading");
+  const [loadAttempt, setLoadAttempt] = useState(0);
+  const ready = assetState === "ready";
   const { scrollYProgress } = useScroll({ target: section, offset: ["start start", "end end"] });
+
+  useEffect(() => {
+    if (!scene.current) return;
+    let cancelled = false;
+    // A slow or failed request must leave the rest of the website usable.
+    const timeout = window.setTimeout(() => {
+      if (!cancelled) setAssetState("error");
+    }, 15000);
+
+    decodeExperienceImages(Array.from(scene.current.querySelectorAll("img")))
+      .then(() => {
+        if (!cancelled) setAssetState("ready");
+      })
+      .catch(() => {
+        if (!cancelled) setAssetState("error");
+      })
+      .finally(() => window.clearTimeout(timeout));
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timeout);
+    };
+  }, [loadAttempt]);
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     const nextStage = value < 0.35 ? 0 : value < 0.72 ? 1 : 2;
@@ -194,6 +226,7 @@ export default function ScrollExperience() {
 
   return (
     <section ref={section} className={`scroll-experience${reduced ? " is-reduced-motion" : ""}`} id="experience" aria-label="From pan to plate">
+      <noscript><style>{".experience-scene{opacity:1}.experience-loading,.experience-chapters,.experience-follow:disabled{display:none}"}</style></noscript>
       <p className="sr-only">Scroll to follow five plump white frozen gyoza arranged in an evenly spaced pinwheel in a sizzling cast iron pan. They flip during the transfer and land in the same arrangement on a plate with their crispy golden-brown bases facing up. A hand grips one with wooden chopsticks, pauses, then lifts it closer.</p>
       <div className="experience-sticky">
         <div className="experience-copy">
@@ -215,29 +248,50 @@ export default function ScrollExperience() {
             {activeStage === 2 || reduced ? (
               <a className="experience-follow" href="#our-story">Meet House of Gyoza <span aria-hidden="true">↗</span></a>
             ) : (
-              <button type="button" className="experience-follow" onClick={() => goTo(activeStage === 0 ? 0.64 : 0.96)}>{activeStage === 0 ? "Follow the flavor" : "Take the first bite"}<span aria-hidden="true">↓</span></button>
+              <button type="button" className="experience-follow" disabled={!ready} onClick={() => goTo(activeStage === 0 ? 0.64 : 0.96)}>{activeStage === 0 ? "Follow the flavor" : "Take the first bite"}<span aria-hidden="true">↓</span></button>
             )}
             <a className="experience-story" href="#our-story">Our story <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
-        <div className="experience-art" aria-hidden="true">
+        <div className="experience-art">
+          {!ready && (
+            <div className="experience-loading" role="status" aria-live="polite">
+              {assetState === "loading" && <span className="experience-loading-mark" aria-hidden="true" />}
+              <p>{assetState === "error" ? "A little longer on the stove." : "Warming up the pan…"}</p>
+              <div className="experience-loading-actions">
+                {assetState === "error" && (
+                  <button type="button" onClick={() => {
+                    setAssetState("loading");
+                    setLoadAttempt((attempt) => attempt + 1);
+                  }}>Try again</button>
+                )}
+                <a href="#menu">Explore our menu <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          )}
+          <div ref={scene} key={loadAttempt} className="experience-scene" data-ready={ready} aria-hidden="true">
           <div className="experience-art-orbit" />
           <div className="experience-art-orbit experience-art-orbit-inner" />
           <motion.div className="experience-pan-layer" style={{ position: "absolute", inset: 0, x: panX, rotate: panRotate, opacity: panOpacity, zIndex: 2 }}>
-            <img src="/assets/pan.png" className="experience-pan-image" alt="" width={1536} height={1536} draggable={false} style={{ position: "absolute", left: "4%", top: "3%", width: "92%", height: "92%", objectFit: "contain", filter: "drop-shadow(16px 30px 24px rgba(55, 23, 13, 0.21))" }} />
+            <img {...experienceAssets.pan} className="experience-pan-image" alt="" loading="eager" decoding="async" fetchPriority="high" draggable={false} style={{ position: "absolute", left: "4%", top: "3%", width: "92%", height: "92%", objectFit: "contain", filter: "drop-shadow(16px 30px 24px rgba(55, 23, 13, 0.21))" }} />
             <motion.div className="experience-sizzle" style={{ position: "absolute", inset: 0, opacity: sizzleOpacity }}>
               {Array.from({ length: 24 }, (_, index) => {
                 const angle = index * 2.39996;
                 const radius = 14 + (index % 5) * 2.5;
                 const size = 6 + (index % 3) * 3;
-                return <i key={index} className="sizzle-bubble" style={{ left: `${44.5 + Math.cos(angle) * radius}%`, top: `${55.4 + Math.sin(angle) * radius}%`, width: size, height: size, animationDelay: `${(index % 9) * -0.19}s`, animationDuration: `${0.9 + (index % 4) * 0.15}s` }} />;
+                // Stable precision keeps server and mobile style serialization aligned.
+                const left = Number((44.5 + Math.cos(angle) * radius).toFixed(4));
+                const top = Number((55.4 + Math.sin(angle) * radius).toFixed(4));
+                const delay = ((index % 9) * -19) / 100;
+                const duration = (90 + (index % 4) * 15) / 100;
+                return <i key={index} className="sizzle-bubble" style={{ left: `${left}%`, top: `${top}%`, width: size, height: size, animationDelay: `${delay}s`, animationDuration: `${duration}s` }} />;
               })}
             </motion.div>
           </motion.div>
 
           <motion.div className="experience-plate-layer" style={{ position: "absolute", inset: 0, x: reduced ? plateOffsetX : plateX, rotate: reduced ? 0 : plateRotate, scale: reduced ? 1 : plateScale, opacity: plateOpacity, zIndex: 3 }}>
-            <img src="/assets/plate.png" className="experience-plate-image" alt="" width={1536} height={1536} draggable={false} style={{ position: "absolute", left: "12%", top: "12%", width: "86%", height: "86%", objectFit: "contain", filter: "drop-shadow(12px 24px 20px rgba(55, 23, 13, 0.15))" }} />
+            <img {...experienceAssets.plate} className="experience-plate-image" alt="" loading="eager" decoding="async" draggable={false} style={{ position: "absolute", left: "12%", top: "12%", width: "86%", height: "86%", objectFit: "contain", filter: "drop-shadow(12px 24px 20px rgba(55, 23, 13, 0.15))" }} />
           </motion.div>
 
           <motion.div className="experience-garnish" style={{ position: "absolute", inset: 0, x: plateOffsetX, opacity: garnishOpacity, zIndex: 7 }}>
@@ -247,6 +301,7 @@ export default function ScrollExperience() {
 
           {dumplings.map((_, index) => <Gyoza key={index} index={index} progress={scrollYProgress} reduced={reduced} />)}
 
+          </div>
         </div>
 
         <nav className="experience-chapters" aria-label="Gyoza story chapters">
@@ -255,7 +310,7 @@ export default function ScrollExperience() {
             { label: "Serve", offset: 0.64 },
             { label: "Savor", offset: 0.99 },
           ].map((chapter, index) => (
-            <button key={chapter.label} type="button" className={activeStage === index ? "is-active" : ""} aria-pressed={activeStage === index} onClick={() => goTo(chapter.offset)}>{chapter.label}</button>
+            <button key={chapter.label} type="button" className={activeStage === index ? "is-active" : ""} aria-pressed={activeStage === index} disabled={!ready} onClick={() => goTo(chapter.offset)}>{chapter.label}</button>
           ))}
           <div className="experience-progress" aria-hidden="true"><motion.div style={{ scaleX: reduced ? 1 : progressScale, transformOrigin: "0% 50%" }} /></div>
         </nav>

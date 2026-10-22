@@ -52,6 +52,16 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset
 .experience-story{font-size:14px;font-weight:550;border-bottom:1px solid #8c8070;padding:10px 0;min-height:44px;display:inline-flex;align-items:center;white-space:nowrap}
 .experience-story span{margin-left:12px}
 .experience-art{position:absolute;width:min(57vw,780px,75svh);aspect-ratio:1;right:1.5%;top:50%;transform:translateY(-42%);pointer-events:none}
+.experience-scene{position:absolute;inset:0;opacity:0;transition:opacity .25s ease}
+.experience-scene[data-ready="true"]{opacity:1}
+.experience-loading{position:absolute;inset:16%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;pointer-events:auto}
+.experience-loading>p{font:500 clamp(22px,3vw,32px)/1.2 var(--display);color:var(--red)}
+.experience-loading-mark{width:38px;height:38px;border:2px solid var(--line);border-top-color:var(--red);border-radius:50%;animation:pan-loading .9s linear infinite}
+.experience-loading-actions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 20px;font-size:13px}
+.experience-loading-actions>a{padding:10px 0;border-bottom:1px solid var(--line);min-height:44px}
+.experience-loading-actions>button{padding:11px 18px;min-height:44px;background:var(--red);color:var(--white);border-radius:3px}
+.experience-follow:disabled,.experience-chapters button:disabled{opacity:.45;cursor:default}
+@keyframes pan-loading{to{transform:rotate(360deg)}}
 .experience-art-orbit{position:absolute;width:83%;height:83%;left:9%;top:13%;border:1px solid #cbb99b55;border-radius:50%;z-index:0}
 .experience-art-orbit-inner{width:92%;height:92%;left:4.5%;top:8.5%;border-style:dashed;border-color:#cbb99b55}
 /* Align the held dumpling with the overhead sprite; keep fingers in the close-up. */
