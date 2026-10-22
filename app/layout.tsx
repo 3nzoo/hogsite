@@ -2,11 +2,14 @@ import type { Metadata, Viewport } from "next";
 import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
+const facebookAppId = process.env.FACEBOOK_APP_ID?.trim();
+
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: "House of Gyoza — Crisp Outside. Comfort Inside.",
   description: "Homemade gyoza, made by House of Gyoza in six signature flavors. Visit us in Quezon City or explore distributor opportunities across the Philippines.",
   alternates: { canonical: "/" },
+  facebook: facebookAppId ? { appId: facebookAppId } : undefined,
   openGraph: {
     title: "House of Gyoza — Crisp Outside. Comfort Inside.",
     description: "Homemade gyoza, familiar flavors, and a little something for every craving. Explore our menu and distributor opportunities across the Philippines.",
