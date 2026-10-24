@@ -7,6 +7,7 @@ const localAddresses = Object.values(networkInterfaces())
   .map((network) => network.address);
 
 const nextConfig: NextConfig = {
+  experimental: { agentUpgrade: "security" },
   output: "export",
   images: { unoptimized: true },
   trailingSlash: true,
