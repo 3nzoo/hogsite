@@ -213,6 +213,9 @@ export default function ScrollExperience() {
   const plateScale = useTransform(scrollYProgress, [0.84, 1], [1, 1.14]);
   const garnishOpacity = useTransform(scrollYProgress, (p) => reduced ? 1 : smooth((p - 0.43) / 0.16) * (1 - smooth((p - 0.86) / 0.08)));
   const progressScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  // Finish the cue's fade during the grip pause, before the hand starts lifting.
+  const scrollCueOpacity = useTransform(scrollYProgress, (p) => 1 - smooth((p - 0.79) / 0.05));
+  const scrollCueVisibility = useTransform(scrollYProgress, (p) => p >= 0.84 ? "hidden" : "visible");
 
   const activeStage = reduced ? 1 : stage;
   const ServeHeading = reduced ? "h1" : "h2";
@@ -304,16 +307,34 @@ export default function ScrollExperience() {
           </div>
         </div>
 
-        <nav className="experience-chapters" aria-label="Gyoza story chapters">
-          {[
-            { label: "Sizzle", offset: 0.04 },
-            { label: "Serve", offset: 0.64 },
-            { label: "Savor", offset: 0.99 },
-          ].map((chapter, index) => (
-            <button key={chapter.label} type="button" className={activeStage === index ? "is-active" : ""} aria-pressed={activeStage === index} disabled={!ready} onClick={() => goTo(chapter.offset)}>{chapter.label}</button>
-          ))}
-          <div className="experience-progress" aria-hidden="true"><motion.div style={{ scaleX: reduced ? 1 : progressScale, transformOrigin: "0% 50%" }} /></div>
-        </nav>
+        <div className="experience-controls">
+          {ready && !reduced && (
+            <motion.button
+              type="button"
+              className="experience-scroll-cue"
+              style={{ opacity: scrollCueOpacity, visibility: scrollCueVisibility }}
+              aria-label="Scroll down to follow the gyoza"
+              onClick={() => goTo(Math.min(scrollYProgress.get() + 0.24, 0.96))}
+            >
+              <span className="experience-scroll-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 6 6 6 6-6M6 12l6 6 6-6" />
+                </svg>
+              </span>
+              <span>Scroll down</span>
+            </motion.button>
+          )}
+          <nav className="experience-chapters" aria-label="Gyoza story chapters">
+            {[
+              { label: "Sizzle", offset: 0.04 },
+              { label: "Serve", offset: 0.64 },
+              { label: "Savor", offset: 0.99 },
+            ].map((chapter, index) => (
+              <button key={chapter.label} type="button" className={activeStage === index ? "is-active" : ""} aria-pressed={activeStage === index} disabled={!ready} onClick={() => goTo(chapter.offset)}>{chapter.label}</button>
+            ))}
+            <div className="experience-progress" aria-hidden="true"><motion.div style={{ scaleX: reduced ? 1 : progressScale, transformOrigin: "0% 50%" }} /></div>
+          </nav>
+        </div>
       </div>
     </section>
   );
