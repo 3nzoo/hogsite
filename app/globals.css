@@ -34,7 +34,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset
 .nav-cta span{font-size:17px}
 
 /* Motion controls the scene positions; the layout reserves space for readable copy. */
-.scroll-experience{position:relative;height:480svh;min-height:2100px;isolation:isolate}
+.scroll-experience{position:relative;height:385svh;min-height:1685px;isolation:isolate}
 .experience-sticky{position:sticky;top:0;height:100svh;min-height:630px;overflow:hidden;border-bottom:1px solid var(--line);background:var(--paper)}
 .experience-sticky::before{content:'';position:absolute;inset:12% 0 0 39%;opacity:.28;background:radial-gradient(ellipse at 55% 54%,#e9dcc4 0,transparent 68%);pointer-events:none}
 .experience-copy{position:absolute;z-index:5;left:6.5%;top:50%;width:43%;transform:translateY(-37%);height:410px;max-width:610px}
@@ -123,11 +123,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset
 @media(max-width:760px){
   :root{--header-height:82px}
   .site-header{padding:0 6%}.brand-art{width:212px;gap:8px}.brand-symbol{width:43px}.nav-link{display:none}.site-header nav{gap:0;font-size:12px}.nav-cta{background:transparent;color:var(--red);padding:8px 0;font-size:12px;gap:8px}.nav-cta:hover{background:transparent}.nav-cta span{font-size:14px}
-  .scroll-experience{height:460svh;min-height:2400px}.experience-sticky{min-height:700px}.experience-sticky::before{inset:40% 0 0;background:radial-gradient(ellipse at 50% 54%,#e9dcc4 0,transparent 67%)}
+  .scroll-experience{height:370svh;min-height:1930px}.experience-sticky{min-height:700px}.experience-sticky::before{inset:40% 0 0;background:radial-gradient(ellipse at 50% 54%,#e9dcc4 0,transparent 67%)}
   .experience-copy{left:7%;top:calc(var(--header-height) + 30px);transform:none;width:86%;max-width:none;height:270px}.experience-copy-stack{height:202px}
   .experience-stage-copy h1,.experience-stage-copy h2{font-size:clamp(38px,8.55vw,62px);line-height:1.07;letter-spacing:-1px;margin:0 0 17px}.experience-stage-copy p{font-size:14px;line-height:1.75;max-width:340px}
   .experience-actions{margin-top:6px;gap:16px}.experience-follow{padding:13px 17px;font-size:12px;gap:29px}.experience-order{gap:8px;padding-inline:10px;font-size:12px}
-  .experience-art{width:min(91vw,440px);right:auto;left:50%;top:auto;bottom:86px;transform:translateX(-50%)}.experience-art-orbit{display:none}
+  .experience-art{width:min(91vw,440px);right:auto;left:50%;top:auto;bottom:86px;transform:translateX(calc(-50% + var(--pan-centering,0%)))}.experience-art-orbit{display:none}
   .experience-controls{left:7%;right:5%;bottom:max(22px,env(safe-area-inset-bottom));gap:12px}.experience-scroll-cue{gap:8px}.experience-scroll-icon{width:28px;height:28px}.experience-chapters{gap:0;padding-bottom:7px}.experience-chapters button{padding:10px 14px;font-size:13px;letter-spacing:0}.chapter-dot{display:none}.experience-progress{left:14px;right:14px}
   .story-section{padding:65px 7%}.story-heading{display:block}.story-heading h2{font-size:46px}.story-intro{font-size:15px;max-width:480px;padding-top:25px}.story-details{grid-template-columns:1fr;margin-top:35px}.story-detail{padding:25px 0;gap:9px}.story-detail+.story-detail{border-left:0;border-top:1px solid var(--line);padding:25px 0}.story-detail p{max-width:none}
   .share-section{grid-template-columns:1fr;min-height:unset}.share-art{width:80%;margin:-7% auto -10%;grid-row:2}.share-copy{padding:55px 7% 10px}.share-copy h2{font-size:53px}.share-copy>p{font-size:15px;max-width:350px}.button{font-size:12px}.replay-link{font-size:12px}

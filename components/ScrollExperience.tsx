@@ -10,6 +10,7 @@ import {
   useReducedMotion,
   useScroll,
   useTransform,
+  type MotionStyle,
   type MotionValue,
 } from "motion/react";
 
@@ -65,9 +66,6 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
   const scale = useTransform(progress, (p) => dumplingPosition(reduced ? 0.65 : p, index).scale);
   const opacity = useTransform(progress, (p) => dumplingPosition(reduced ? 0.65 : p, index).opacity);
   const shadow = useTransform(progress, [0, 0.3, 0.42, 0.63, 0.84, 0.98], [5, 5, 10, 3, 3, 12]);
-  // Respond to the first swipe, then ease into the fully cooked image.
-  const cookedOpacity = useTransform(progress, (p) => reduced ? 1 : 1 - (1 - clamp(p / 0.18)) ** 3);
-  const frozenOpacity = useTransform(cookedOpacity, (cooked) => 1 - cooked);
   // Hand, sticks and food share one photograph and one transform: contact cannot drift.
   const gripOpacity = useTransform(progress, (p) => selected && !reduced ? smooth((p - 0.74) / 0.05) : 0);
   const flip = useTransform(progress, (p) => reduced ? 1 : smooth((transferProgress(p, index) - 0.25) / 0.5));
@@ -77,7 +75,6 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
   const flipTilt = useTransform(flip, (value) => -Math.sin(value * Math.PI) * 8);
   const frontFace = useTransform(flip, (value) => 1 - smooth((value - 0.42) / 0.16));
   const backFace = useTransform(frontFace, (value) => 1 - value);
-  const cookedFrontOpacity = useTransform(() => cookedOpacity.get() * frontFace.get());
   const goldenOpacity = useTransform(() => backFace.get() * (1 - gripOpacity.get()));
   const filter = useTransform(() => {
     const size = reduced ? 3 : shadow.get();
@@ -119,16 +116,7 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
           decoding="async"
           fetchPriority="high"
           draggable={false}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", opacity: frozenOpacity }}
-        />
-        <motion.img
-          className="experience-gyoza-image experience-gyoza-cooked"
-          {...experienceAssets.cooked}
-          alt=""
-          loading="eager"
-          decoding="async"
-          draggable={false}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", opacity: cookedFrontOpacity }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", opacity: frontFace }}
         />
         <motion.img
           className="experience-gyoza-image experience-gyoza-golden"
@@ -159,8 +147,10 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
 export default function ScrollExperience() {
   const section = useRef<HTMLElement>(null);
   const scene = useRef<HTMLDivElement>(null);
+  const cancelGuidedScroll = useRef<(() => void) | null>(null);
   const reduced = useReducedMotion() ?? false;
   const [stage, setStage] = useState(0);
+  const [guidedStage, setGuidedStage] = useState<number | null>(null);
   const [assetState, setAssetState] = useState<"loading" | "ready" | "error">("loading");
   const [loadAttempt, setLoadAttempt] = useState(0);
   const ready = assetState === "ready";
@@ -198,6 +188,8 @@ export default function ScrollExperience() {
     if (reduced) setStage(1);
   }, [reduced]);
 
+  useEffect(() => () => cancelGuidedScroll.current?.(), []);
+
   const firstOpacity = useTransform(scrollYProgress, (p) => reduced ? 0 : 1 - smooth((p - 0.27) / 0.08));
   const secondOpacity = useTransform(scrollYProgress, (p) => reduced ? 1 : smooth((p - 0.29) / 0.08) * (1 - smooth((p - 0.65) / 0.08)));
   const thirdOpacity = useTransform(scrollYProgress, (p) => reduced ? 0 : smooth((p - 0.67) / 0.08));
@@ -208,9 +200,11 @@ export default function ScrollExperience() {
   const panX = useTransform(scrollYProgress, [0, 0.38, 0.65, 1], ["0%", "0%", "-112%", "-112%"]);
   const panRotate = useTransform(scrollYProgress, [0, 0.38, 0.65], [0, 0, -24]);
   const panOpacity = useTransform(scrollYProgress, (p) => reduced ? 0 : 1 - smooth((p - 0.47) / 0.16));
+  // The handle offsets the bowl; restore the original framing as the plate settles.
+  const panCentering = useTransform(scrollYProgress, (p) => `${reduced ? 0 : 5.5 * (1 - smooth((p - 0.265) / 0.205))}%`);
   const sizzleOpacity = useTransform(scrollYProgress, (p) => reduced ? 0 : 1 - smooth((p - 0.26) / 0.18));
-  const plateX = useTransform(scrollYProgress, [0, 0.24, 0.47], ["82%", "82%", plateOffsetX]);
-  const plateOpacity = useTransform(scrollYProgress, (p) => reduced ? 1 : smooth((p - 0.2) / 0.12) * (1 - smooth((p - 0.87) / 0.1)));
+  const plateX = useTransform(scrollYProgress, [0, 0.055, 0.47], ["88%", "66%", plateOffsetX]);
+  const plateOpacity = useTransform(scrollYProgress, (p) => reduced ? 1 : clamp(p / 0.055) * (1 - smooth((p - 0.87) / 0.1)));
   const plateRotate = useTransform(scrollYProgress, [0.24, 0.47, 1], [17, 0, 0]);
   const plateScale = useTransform(scrollYProgress, [0.84, 1], [1, 1.14]);
   const garnishOpacity = useTransform(scrollYProgress, (p) => reduced ? 1 : smooth((p - 0.43) / 0.16) * (1 - smooth((p - 0.86) / 0.08)));
@@ -220,13 +214,45 @@ export default function ScrollExperience() {
   const scrollCueVisibility = useTransform(scrollYProgress, (p) => p >= 0.84 ? "hidden" : "visible");
 
   const activeStage = reduced ? 1 : stage;
+  const actionStage = guidedStage ?? activeStage;
   const ServeHeading = reduced ? "h1" : "h2";
 
-  function goTo(progress: number) {
+  function goTo(progress: number, duration = 0) {
+    cancelGuidedScroll.current?.();
     if (!section.current) return;
-    const top = section.current.getBoundingClientRect().top + window.scrollY;
-    const length = Math.max(0, section.current.offsetHeight - window.innerHeight);
-    window.scrollTo({ top: top + length * progress, behavior: reduced ? "auto" : "smooth" });
+    const from = window.scrollY;
+    const top = section.current.getBoundingClientRect().top + from;
+    const length = Math.max(0, section.current.offsetHeight - document.documentElement.clientHeight);
+    const destination = top + length * progress;
+    if (!duration || reduced) {
+      window.scrollTo({ top: destination, behavior: reduced ? "instant" : "smooth" });
+      return;
+    }
+
+    const input = new AbortController();
+    const started = performance.now();
+    let frame: number;
+    function stop() {
+      cancelAnimationFrame(frame);
+      input.abort();
+      cancelGuidedScroll.current = null;
+      setGuidedStage(null);
+    }
+    function tick(now: number) {
+      const elapsed = clamp((now - started) / duration);
+      window.scrollTo({ top: mix(from, destination, smooth(elapsed)), behavior: "instant" });
+      if (elapsed < 1) frame = requestAnimationFrame(tick);
+      else stop();
+    }
+    cancelGuidedScroll.current = stop;
+    setGuidedStage(activeStage);
+    for (const event of ["wheel", "touchmove"]) {
+      window.addEventListener(event, stop, { passive: true, signal: input.signal });
+    }
+    window.addEventListener("keydown", (event) => {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End"].includes(event.key)) stop();
+    }, { signal: input.signal });
+    frame = requestAnimationFrame(tick);
   }
 
   return (
@@ -250,16 +276,20 @@ export default function ScrollExperience() {
             </motion.div>
           </div>
           <div className="experience-actions">
-            {activeStage === 2 || reduced ? (
+            {actionStage === 2 || reduced ? (
               <a className="experience-follow" href="#our-story">Meet House of Gyoza <span aria-hidden="true">↗</span></a>
             ) : (
-              <button type="button" className="experience-follow" disabled={!ready} onClick={() => goTo(activeStage === 0 ? 0.64 : 0.96)}>{activeStage === 0 ? "Follow the flavor" : "Take the first bite"}<span aria-hidden="true">↓</span></button>
+              <button type="button" className="experience-follow" disabled={!ready} aria-disabled={guidedStage !== null} onClick={() => {
+                if (cancelGuidedScroll.current) return;
+                if (actionStage === 0) goTo(0.64, 1200);
+                else goTo(0.99, 1250);
+              }}>{actionStage === 0 ? "Follow the flavor" : "Take the first bite"}<span aria-hidden="true">↓</span></button>
             )}
             <a className="experience-order" href={contact.messenger}>Order now <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 
-        <div className="experience-art">
+        <motion.div className="experience-art" style={{ "--pan-centering": panCentering } as MotionStyle & { "--pan-centering": MotionValue<string> }}>
           {!ready && (
             <div className="experience-loading" role="status" aria-live="polite">
               {assetState === "loading" && <span className="experience-loading-mark" aria-hidden="true" />}
@@ -307,7 +337,7 @@ export default function ScrollExperience() {
           {dumplings.map((_, index) => <Gyoza key={index} index={index} progress={scrollYProgress} reduced={reduced} />)}
 
           </div>
-        </div>
+        </motion.div>
 
         <div className="experience-controls">
           {ready && !reduced && (
