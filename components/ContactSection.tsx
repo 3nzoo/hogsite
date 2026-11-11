@@ -14,8 +14,8 @@ export default function ContactSection() {
           <a className={styles.textLink} href={contact.map} target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span><span className="sr-only"> on Google Maps (opens in a new tab)</span></a>
         </div>
         <div className={styles.contactActions}>
-          <a className={styles.contentButton} href={contact.viber}>Message on Viber <span aria-hidden="true">↗</span></a>
-          <a className={styles.textLink} href={contact.telephone}>Call us <span aria-hidden="true">↗</span></a>
+          <a className={styles.contentButton} href={contact.messenger}>Order now <span aria-hidden="true">↗</span></a>
+          <a className={styles.textLink} href={contact.viber}>Message on Viber <span aria-hidden="true">↗</span></a>
         </div>
         <address className={styles.contactDetails}>
           <a href={contact.telephone}>{contact.phone}</a>
