@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { GYOZA_COUNT, pinwheelPosition, type Point } from "@/lib/gyoza-layout";
 import { decodeExperienceImages, experienceAssets } from "@/lib/experience-assets";
+import { contact } from "@/lib/site-content";
 import {
   motion,
   useMotionValueEvent,
@@ -64,7 +65,8 @@ function Gyoza({ progress, index, reduced }: { progress: MotionValue<number>; in
   const scale = useTransform(progress, (p) => dumplingPosition(reduced ? 0.65 : p, index).scale);
   const opacity = useTransform(progress, (p) => dumplingPosition(reduced ? 0.65 : p, index).opacity);
   const shadow = useTransform(progress, [0, 0.3, 0.42, 0.63, 0.84, 0.98], [5, 5, 10, 3, 3, 12]);
-  const cookedOpacity = useTransform(progress, (p) => reduced ? 1 : smooth((p - 0.12) / 0.13));
+  // Respond to the first swipe, then ease into the fully cooked image.
+  const cookedOpacity = useTransform(progress, (p) => reduced ? 1 : 1 - (1 - clamp(p / 0.18)) ** 3);
   const frozenOpacity = useTransform(cookedOpacity, (cooked) => 1 - cooked);
   // Hand, sticks and food share one photograph and one transform: contact cannot drift.
   const gripOpacity = useTransform(progress, (p) => selected && !reduced ? smooth((p - 0.74) / 0.05) : 0);
@@ -253,7 +255,7 @@ export default function ScrollExperience() {
             ) : (
               <button type="button" className="experience-follow" disabled={!ready} onClick={() => goTo(activeStage === 0 ? 0.64 : 0.96)}>{activeStage === 0 ? "Follow the flavor" : "Take the first bite"}<span aria-hidden="true">↓</span></button>
             )}
-            <a className="experience-story" href="#our-story">Our story <span aria-hidden="true">↗</span></a>
+            <a className="experience-order" href={contact.messenger}>Order now <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 

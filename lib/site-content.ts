@@ -3,6 +3,7 @@ export const distributorUrl = "https://distributor.houseofgyoza.com/";
 export const contact = {
   phone: "0977-258-5858",
   telephone: "tel:+639772585858",
+  messenger: "https://m.me/houseofgyoza",
   viber: "viber://chat?number=%2B639772585858",
   email: "food@houseofgyoza.com",
   map: "https://maps.app.goo.gl/XAWBGrGzSbsoAMJEA",
