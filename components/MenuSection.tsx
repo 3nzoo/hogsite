@@ -1,4 +1,4 @@
-import { flavors } from "@/lib/site-content";
+import { contact, flavors } from "@/lib/site-content";
 import styles from "./HomeContent.module.css";
 
 export default function MenuSection() {
@@ -16,6 +16,9 @@ export default function MenuSection() {
             </div>
             <h3>{flavor.name}</h3>
             <p>{flavor.description}</p>
+            <a className={`${styles.contentButton} ${styles.menuOrder}`} href={contact.messenger} aria-label={`Order now: ${flavor.name} on Messenger`}>
+              Order now <span aria-hidden="true">↗</span>
+            </a>
           </article>
         ))}
       </div>

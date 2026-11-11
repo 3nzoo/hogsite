@@ -28,13 +28,14 @@
 .sectionHeading{display:grid;grid-template-columns:1.2fr 1fr;align-items:end;gap:10%;margin-bottom:44px}
 .sectionHeading p{max-width:420px;font-size:17px;line-height:1.8}
 .menuGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:28px;row-gap:42px}
-.menuCard{min-width:0}
+.menuCard{min-width:0;display:flex;flex-direction:column}
 .foodImage{position:relative;aspect-ratio:4/3;overflow:hidden;border-radius:5px;background:var(--soft)}
 .foodImage img{width:100%;height:100%;object-fit:cover}
 /* Nudge the enhanced pork plate left within its frame while keeping both chopsticks visible. */
 .foodImage .porkPhoto{width:104%;height:104%;max-width:none;transform:translate(-3%,-2%)}
 .menuCard h3{font:500 clamp(23px,2.1vw,28px)/1.25 var(--display);margin:20px 0 8px;letter-spacing:-.2px}
-.menuCard p{font-size:16px;line-height:1.7;max-width:330px}
+.menuCard p{font-size:16px;line-height:1.7;max-width:330px;margin-bottom:16px}
+.menuCard .menuOrder{align-self:flex-start;margin-top:auto;gap:16px;min-height:44px;padding:10px 16px}
 .servingOptions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;border-top:1px solid var(--line);padding-top:34px;margin-top:54px}
 .servingOptions>div+div{padding-left:30px;border-left:1px solid var(--line)}
 .servingOptions h3{font-size:18px;line-height:1.5;font-weight:600;margin-bottom:8px}
@@ -111,7 +112,7 @@
  .footer{flex-wrap:wrap}
 }
 @media(max-width:760px){
- .header{padding-inline:5%;gap:12px}.header .brand{margin-right:auto}.brandArt{width:196px;gap:8px}.brandSymbol{width:40px}.headerCta{font-size:14px;gap:8px;padding:11px 13px;min-height:44px}
+ .header{padding-inline:5%;gap:12px}.header .brand{margin-right:auto}.brandArt{width:196px;gap:8px}.brandSymbol{width:40px}.headerCta{font-size:14px;gap:8px;padding:0 13px;height:44px;min-height:44px}
  .menuToggle{display:grid;place-items:center;background:transparent;min-width:44px;height:44px;padding:10px;margin-right:-10px}.menuToggle svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.5}
  .navigation{position:absolute;top:100%;left:0;right:0;margin:0;padding:16px 7% 23px;display:flex;flex-direction:column;align-items:stretch;gap:4px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 14px 18px #211e1b0a;font-size:16px}.navigation[data-open='false']{display:none}.navigation a{padding:8px 0;min-height:48px}
  .section{padding:65px 7%}.content h2{font-size:40px;letter-spacing:-.65px}.invitation{padding:24px 7%;display:block}.invitation p{font-size:16px;line-height:1.7}.invitation p strong{display:block}.invitation a{margin-top:8px;font-size:15px;gap:20px}
@@ -122,7 +123,7 @@
  .contactSection{gap:35px}.contactCopy>p{font-size:16px}.contactLocation{margin-top:26px}.socialPanel{padding:26px}.footer{padding:28px 7%;gap:22px}.footerLinks{gap:10px 25px}.footerLinks a{font-size:14px}
 }
 @media(max-width:520px){
- .brandArt{width:164px;gap:6px}.brandSymbol{width:33px}.header{gap:8px}.headerCta{padding:10px 11px;gap:6px}
+ .brandArt{width:164px;gap:6px}.brandSymbol{width:33px}.header{gap:8px}.headerCta{padding-inline:11px;gap:6px}
  .menuGrid{grid-template-columns:1fr;gap:34px}.foodImage{aspect-ratio:4/3}.menuCard h3{font-size:27px}.menuCard p{max-width:390px}
  .servingOptions{grid-template-columns:1fr;gap:22px}.servingOptions>div+div{border-left:0;padding-left:0}.servingOptions h3{font-size:18px;margin-bottom:5px}.servingOptions p{max-width:none;font-size:16px}
  .content h2{font-size:38px}.distributorCopy h2{font-size:40px}.distributorSteps{padding:23px}.distributorSteps>h3{font-size:27px}.contentButton{gap:24px;font-size:15px}.socialPanel{padding:24px}.footer .brandArt{width:230px}
